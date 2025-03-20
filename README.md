@@ -27,6 +27,8 @@ The implementation includes:
 - **JSON-based Transaction Log**: Actions are serialized to JSON for storage
 - **Multiple Isolation Levels**: Supports Serializable and WriteSerializable isolation
 - **Automatic Retry**: Configurable automatic retry on conflict detection
+- **Checkpoint Mechanism**: Supports checkpointing of table state for faster loading
+- **Snapshot Isolation**: Point-in-time view of the table
 
 ## Getting Started
 
@@ -115,6 +117,22 @@ try {
 }
 ```
 
+### Using Checkpoints
+
+```java
+// Create a DeltaLog instance
+DeltaLog deltaLog = DeltaLog.forTable("/path/to/table");
+
+// Create a checkpoint (happens automatically when needed)
+deltaLog.checkpoint();
+
+// Read the latest version with checkpoint support
+Snapshot snapshot = deltaLog.snapshot();
+
+// Get files from the snapshot
+List<AddFile> activeFiles = snapshot.getActiveFiles();
+```
+
 ## Building a Fat JAR
 
 To create a JAR file with all dependencies included:
@@ -150,12 +168,21 @@ src/main/java/com/example/deltajava/
 │   ├── Protocol.java      # Protocol versioning 
 │   └── RemoveFile.java    # Removing files from the table
 ├── util/
-│   └── JsonUtil.java      # JSON serialization utilities
+│   ├── JsonUtil.java      # JSON serialization utilities
+│   ├── FileNames.java     # Delta file naming utilities
+│   ├── CsvUtil.java       # CSV processing utilities
+│   ├── ParquetUtil.java   # Parquet file handling
+│   ├── CheckpointUtil.java # Checkpoint creation and loading
+│   └── CheckpointMetadata.java # Metadata for checkpoints
 ├── ConcurrentModificationException.java  # Exception for conflicts
 ├── DeltaApp.java          # Simple demo application
+├── DeltaLog.java          # Core Delta log management
+├── DeltaTable.java        # Table operations interface
 ├── OptimisticTransaction.java # Transaction with conflict detection 
+├── Snapshot.java          # Point-in-time view of the table
 ├── Transaction.java       # Basic transaction implementation
 └── examples/
+    ├── DeltaTableExample.java # Table operations example
     └── TransactionExample.java # Example with concurrent transactions
 ```
 
