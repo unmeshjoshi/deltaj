@@ -43,3 +43,13 @@ delta_table/
 
 # Local configuration
 local.properties
+
+# Delta Lake specific
+*/_delta_log/
+*/_delta_log/*
+*.checkpoint.parquet
+*.checkpoint.parquet.crc
+*.parquet
+_last_checkpoint
+customer_data_platform/
+com.example.deltajava.examples.*/
