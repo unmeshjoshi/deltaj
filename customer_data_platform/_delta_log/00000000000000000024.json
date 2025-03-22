@@ -1,0 +1,2 @@
+{"type":"metadata","id":"89414666-ed6a-40ab-b082-84dc5b6a25bb","name":"Delta Table","description":"","format":"parquet","configuration":{},"partitionColumns":{},"createdTime":1742607402633,"type":"metadata"}
+{"type":"commitInfo","version":"1","timestamp":1742607877626,"operation":"TRANSACTION","operationParameters":{"commitTime":"1742607877626","startVersion":"23","isolationLevel":"SERIALIZABLE"},"commitVersion":"1","type":"commitInfo"}

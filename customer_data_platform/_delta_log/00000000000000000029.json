@@ -1,0 +1,2 @@
+{"type":"add","path":"data/part-d2fb0428-61fd-4630-acca-1fb8c49fc57a.parquet","partitionValues":{},"size":3944,"modificationTime":1742607877865,"dataChange":true,"stats":{},"tags":"","type":"add"}
+{"type":"commitInfo","version":"1","timestamp":1742607877894,"operation":"TRANSACTION","operationParameters":{"commitTime":"1742607877894","startVersion":"28","isolationLevel":"SERIALIZABLE"},"commitVersion":"1","type":"commitInfo"}

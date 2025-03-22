@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,7 +52,7 @@ public class DeltaTableTest {
         // Verify that there is at least one log file
         List<Path> logFiles = Files.list(logDir)
                 .filter(path -> path.toString().endsWith(".json"))
-                .toList();
+                .collect(Collectors.toList());
         assertFalse(logFiles.isEmpty(), "Should have at least one log file");
     }
     
@@ -69,8 +70,8 @@ public class DeltaTableTest {
         // Verify there's a new file in the data directory
         Path dataDir = Path.of(tablePath, "data");
         List<Path> dataFiles = Files.list(dataDir)
-                .filter(path -> path.toString().endsWith(".csv"))
-                .toList();
+                .filter(path -> path.toString().endsWith(".parquet"))
+                .collect(Collectors.toList());
         assertEquals(1, dataFiles.size(), "Should have one data file");
     }
     

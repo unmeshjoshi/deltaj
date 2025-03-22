@@ -1,0 +1,2 @@
+{"type":"add","path":"data/part-f58c0b26-e87a-4fed-84b1-d3437348a567.parquet","partitionValues":{},"size":4208,"modificationTime":1742607405045,"dataChange":true,"stats":{},"tags":"","type":"add"}
+{"type":"commitInfo","version":"1","timestamp":1742607405069,"operation":"TRANSACTION","operationParameters":{"commitTime":"1742607405069","startVersion":"12","isolationLevel":"SERIALIZABLE"},"commitVersion":"1","type":"commitInfo"}

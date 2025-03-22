@@ -1,0 +1,4 @@
+{"type":"protocol","type":"protocol","minReaderVersion":1,"minWriterVersion":1,"readerFeatures":[],"writerFeatures":[]}
+{"type":"metadata","id":"table1","name":"demo_table","description":"","format":"csv","configuration":{},"partitionColumns":{},"createdTime":1742607771402,"type":"metadata"}
+{"type":"add","path":"data/part-00000.csv","partitionValues":{},"size":1024,"modificationTime":1742607771402,"dataChange":true,"stats":{},"tags":"","type":"add"}
+{"type":"add","path":"data/part-00001.csv","partitionValues":{},"size":2048,"modificationTime":1742607771402,"dataChange":true,"stats":{},"tags":"","type":"add"}

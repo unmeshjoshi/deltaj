@@ -2,6 +2,7 @@ package com.example.deltajava;
 
 import com.example.deltajava.actions.*;
 import com.example.deltajava.util.CsvUtil;
+import com.example.deltajava.util.ParquetUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -60,7 +61,7 @@ public class DeltaTable {
         
         // Add protocol and metadata actions
         tx.addAction(new Protocol());
-        tx.addAction(new Metadata(UUID.randomUUID().toString(), "Delta Table", "csv"));
+        tx.addAction(new Metadata(UUID.randomUUID().toString(), "Delta Table", "parquet"));
         
         // Commit the transaction
         tx.commit();
@@ -84,13 +85,13 @@ public class DeltaTable {
         // Generate a unique file name
         String fileId = UUID.randomUUID().toString();
         long timestamp = Instant.now().toEpochMilli();
-        String fileName = String.format("part-%s.csv", fileId);
+        String fileName = String.format("part-%s.parquet", fileId);
         
         // Create the full path to the data file
         Path dataFilePath = Paths.get(tablePath, "data", fileName);
         
-        // Write the records to a CSV file
-        long fileSize = CsvUtil.writeRecords(records, dataFilePath);
+        // Write the records to a Parquet file
+        long fileSize = ParquetUtil.writeRecords(records, dataFilePath);
         
         // Create an AddFile action
         AddFile addFile = new AddFile(
@@ -125,7 +126,7 @@ public class DeltaTable {
         // Read each file and collect records
         for (AddFile addFile : activeFiles) {
             Path filePath = Paths.get(tablePath, addFile.getPath());
-            List<Map<String, String>> fileRecords = CsvUtil.readRecords(filePath);
+            List<Map<String, String>> fileRecords = ParquetUtil.readRecords(filePath);
             allRecords.addAll(fileRecords);
         }
         
